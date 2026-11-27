@@ -1,32 +1,36 @@
+# fly.toml app configuration file generated for n8n-fly-fqulpw on 2026-11-27T11:02:22Z
+#
+# See https://docs.fly.io/reference/configuration for information about how to use this file.
+#
 
-app = "n8n-app"
-primary_region = "sin"
+app = 'n8n-fly-fqulpw'
+primary_region = 'iad'
 
 [build]
-  dockerfile = "Dockerfile"
+  dockerfile = 'Dockerfile'
 
 [env]
-  N8N_HOST = "n8n-app.fly.dev"
-  N8N_PROTOCOL = "https"
-  N8N_PORT = "5678"
-  N8N_EDITOR_BASE_URL = "https://n8n-app.fly.dev"
-  WEBHOOK_URL = "https://n8n-app.fly.dev/"
-  N8N_PROXY_HOPS = "1"
-  GENERIC_TIMEZONE = "Asia/Dhaka"
-  TZ = "Asia/Dhaka"
+  GENERIC_TIMEZONE = 'Asia/Dhaka'
+  N8N_EDITOR_BASE_URL = 'https://n8n-app.fly.dev'
+  N8N_HOST = 'n8n-app.fly.dev'
+  N8N_PORT = '5678'
+  N8N_PROTOCOL = 'https'
+  N8N_PROXY_HOPS = '1'
+  TZ = 'Asia/Dhaka'
+  WEBHOOK_URL = 'https://n8n-app.fly.dev/'
+
+[[mounts]]
+  source = 'n8n_data'
+  destination = '/home/node/.n8n'
 
 [http_service]
-  internal_port = 5678
+  internal_port = 8080
   force_https = true
-  auto_stop_machines = "off"
+  auto_stop_machines = 'off'
   auto_start_machines = true
   min_machines_running = 1
 
-[[mounts]]
-  source = "n8n_data"
-  destination = "/home/node/.n8n"
-
 [[vm]]
-  cpu_kind = "shared"
+  memory = '256mb'
+  cpu_kind = 'shared'
   cpus = 1
-  memory = "1gb"
